@@ -2,8 +2,6 @@ language: cpp
 
 matrix:
   include:
-    - name: "Windows"
-      os: windows
     - name: "Linux"
       os: linux
       dist: bionic
@@ -11,7 +9,7 @@ matrix:
         apt:
           packages:
             - ocl-icd-opencl-dev
-    - name: "Linux arm64"
+    - name: "Linux"
       os: linux
       arch: arm64
       dist: bionic
@@ -19,8 +17,16 @@ matrix:
         apt:
           packages:
             - ocl-icd-opencl-dev
-    - name: "OSX"
-      os: osx
+    - name: "Linux"
+      os: linux
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      dist: bionic
+      addons:
+        apt:
+          packages:
+            - ocl-icd-opencl-dev
 
 before_script:
   - git submodule update --init --recursive --remote
